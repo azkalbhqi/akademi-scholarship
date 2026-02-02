@@ -2,6 +2,12 @@
 import { useState } from "react";
 import Link from "next/link";
 
+const navLinks = [
+  { name: "Home", href: "/" },
+  { name: "Academy", href: "/academy" },
+  { name: "About Us", href: "/about" },
+];
+
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -12,73 +18,43 @@ const Navbar = () => {
 
         {/* Hamburger for mobile */}
         <button
-          className="md:hidden text-black text-3xl"
+          className="md:hidden text-black text-3xl focus:outline-none"
           onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle Menu"
         >
-          ☰
+          {menuOpen ? "✕" : "☰"}
         </button>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-9 text-xl">
-          <li>
-            <Link
-              className="text-black hover:text-blue-500 hover:scale-110 transition-all"
-              href="/"
-            >
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="text-black hover:text-blue-500 hover:scale-110 transition-all"
-              href="/academy"
-            >
-              Academy
-            </Link>
-          </li>
-          
-          <li>
-            <Link
-              className="text-black hover:text-blue-500 hover:scale-110 transition-all"
-              href="/about"
-            >
-              About Us
-            </Link>
-          </li>
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                className="text-black hover:text-blue-500 hover:scale-110 transition-all inline-block"
+              >
+                {link.name}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden mt-4 space-y-3">
+        <div className="md:hidden mt-4 pb-4">
           <ul className="flex flex-col gap-4 text-xl">
-            <li>
-              <Link
-                className="text-black hover:text-blue-500 transition-all"
-                href="/"
-                onClick={() => setMenuOpen(false)}
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="text-black hover:text-blue-500 transition-all"
-                href="/academy"
-                onClick={() => setMenuOpen(false)}
-              >
-                Academy
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="text-black hover:text-blue-500 transition-all"
-                href="/about"
-                onClick={() => setMenuOpen(false)}
-              >
-                About Us
-              </Link>
-            </li>
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="text-black hover:text-blue-500 transition-all block"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       )}
