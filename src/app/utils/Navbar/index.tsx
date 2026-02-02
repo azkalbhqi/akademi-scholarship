@@ -31,7 +31,7 @@ const Navbar = () => {
           <li>
             <Link
               className="text-black hover:text-blue-500 hover:scale-110 transition-all"
-              href="/Academy"
+              href="/academy"
             >
               Academy
             </Link>
