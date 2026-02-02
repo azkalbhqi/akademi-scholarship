@@ -64,7 +64,7 @@ const Navbar = () => {
             <li>
               <Link
                 className="text-black hover:text-blue-500 transition-all"
-                href="/Academy"
+                href="/academy"
                 onClick={() => setMenuOpen(false)}
               >
                 Academy
